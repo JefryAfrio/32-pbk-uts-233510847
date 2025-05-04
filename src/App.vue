@@ -116,6 +116,40 @@ const filteredTodos = computed(() => {
           <input type="submit" value="Tambahkan" />
         </form>
       </section>
+
+      <section class="todo-list">
+        <div class="todo-header">
+          <h3>Daftar Tugas</h3>
+          <label class="toggle-filter">
+            <input type="checkbox" v-model="showOnlyUndone" />
+            <span class="toggle-bubble"></span>
+            <span class="toggle-label">Hanya tampilkan yang belum selesai</span>
+          </label>
+        </div>
+
+        <div class="list">
+          <div
+            v-for="todo in filteredTodos"
+            :key="todo.createdAt"
+            :class="['todo-item', { done: todo.done }]"
+          >
+            <label class="custom-checkbox" @click="todo.done = !todo.done">
+              <span :class="['bubble', todo.category, { checked: todo.done }]"></span>
+            </label>
+
+            <div class="todo-content">
+              <strong>Mata Kuliah:</strong> {{ todo.course }}<br />
+              <strong>Materi:</strong> {{ todo.task }}<br />
+              <strong>Kategori:</strong> {{ todo.category === 'teori' ? 'Teori' : 'Pratikum' }}<br />
+              <strong>Deadline:</strong> {{ todo.deadline }}
+            </div>
+
+            <div class="actions">
+              <button class="delete" @click="removeTodo(todo)">Hapus</button>
+            </div>
+          </div>
+        </div>
+      </section>
       </main>
       </div>
 </template>

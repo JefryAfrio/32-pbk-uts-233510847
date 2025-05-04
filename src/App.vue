@@ -62,6 +62,17 @@ onMounted(() => {
   todos.value = JSON.parse(localStorage.getItem('todos')) || []
 })
 
+const todos_asc = computed(() => {
+  return [...todos.value].sort((a, b) => b.createdAt - a.createdAt)
+})
+
+const filteredTodos = computed(() => {
+  if (showOnlyUndone.value) {
+    return todos_asc.value.filter(todo => !todo.done)
+  }
+  return todos_asc.value
+})
+
 </script>
 
 <template>

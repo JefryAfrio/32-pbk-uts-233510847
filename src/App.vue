@@ -21,8 +21,32 @@ const courseOptions = [
   'Matematika Diskrit',
   'Interkasi Manusia dan Komputer',
 ]
+
+const addTodo = () => {
+  if (
+    input_course.value.trim() === '' ||
+    input_task.value.trim() === '' ||
+    input_category.value === null ||
+    input_deadline.value === ''
+  ) return
+
+  todos.value.push({
+    course: input_course.value,
+    task: input_task.value,
+    category: input_category.value,
+    deadline: input_deadline.value,
+    done: false,
+    createdAt: new Date().getTime()
+  })
+
+  input_course.value = ''
+  input_task.value = ''
+  input_category.value = null
+  input_deadline.value = ''
+}
+
 </script>
 
 <template>
-  
+
 </template>
